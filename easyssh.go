@@ -91,8 +91,9 @@ func (ssh_conf *SSHConfig) connect() (*ssh.Session, error) {
 	}
 
 	config := &ssh.ClientConfig{
-		User: ssh_conf.User,
-		Auth: auths,
+		User:            ssh_conf.User,
+		Auth:            auths,
+		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
 
 	// default maximum amount of time for the TCP connection to establish is 10s

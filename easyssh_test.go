@@ -1,7 +1,6 @@
 package easyssh
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -60,15 +59,15 @@ func TestRun(t *testing.T) {
 	}
 }
 
-func TestSSHConfig_Scp(t *testing.T) {
-	// Call Scp method with file you want to upload to remote server.
-	err := sshConfig.Scp("/home/SophisticaSean/untitled1.html", "/tmp/target.html")
+//func TestSSHConfig_Scp(t *testing.T) {
+//// Call Scp method with file you want to upload to remote server.
+//err := sshConfig.Scp("/home/SophisticaSean/untitled1.html", "/tmp/target.html")
 
-	// Handle errors
-	if err != nil {
-		panic("Can't run remote command: " + err.Error())
-	} else {
-		fmt.Println("success")
+//// Handle errors
+//if err != nil {
+//panic("Can't run remote command: " + err.Error())
+//} else {
+//fmt.Println("success")
 
-	}
-}
+//}
+//}
