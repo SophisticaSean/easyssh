@@ -1,5 +1,7 @@
 # easyssh
 
+# Forked for Go 1.10+ support
+
 ## Description
 
 Package easyssh provides a simple implementation of some SSH protocol features in Go.
