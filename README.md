@@ -25,15 +25,15 @@ sshconfig.ScpM(pathmapping)
 ## Install
 
 ```
-go get github.com/gaols/easyssh
+go get github.com/SophisticaSean/easyssh
 ```
 
 ## So easy to use
 
-[Run a command on remote server and get STDOUT output](https://github.com/gaols/easyssh/blob/master/example/run.go)
+[Run a command on remote server and get STDOUT output](https://github.com/SophisticaSean/easyssh/blob/master/example/run.go)
 
-[Run a command on remote server and get STDOUT output line by line](https://github.com/gaols/easyssh/blob/master/example/rtrun.go)
+[Run a command on remote server and get STDOUT output line by line](https://github.com/SophisticaSean/easyssh/blob/master/example/rtrun.go)
 
-[Upload a file to remote server](https://github.com/gaols/easyssh/blob/master/example/scp.go)
+[Upload a file to remote server](https://github.com/SophisticaSean/easyssh/blob/master/example/scp.go)
 
-[Upload a directory to remote server](https://github.com/gaols/easyssh/blob/master/example/scopy.go)
+[Upload a directory to remote server](https://github.com/SophisticaSean/easyssh/blob/master/example/scopy.go)

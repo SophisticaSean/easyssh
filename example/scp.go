@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gaols/easyssh"
+	"github.com/SophisticaSean/easyssh"
 )
 
 func main() {

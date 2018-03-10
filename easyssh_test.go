@@ -1,12 +1,12 @@
 package easyssh
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 var sshConfig = &SSHConfig{
-	User:     "gaols",
+	User:     "SophisticaSean",
 	Server:   "192.168.2.155",
 	Password: "******",
 	//Key:  "/.ssh/id_rsa",
@@ -39,7 +39,7 @@ func TestStream(t *testing.T) {
 			}
 		}
 		if stdout != testCase[1] {
-			t.Error("Output didn't match expected: %s,%s", stdout, stderr)
+			t.Errorf("Output didn't match expected: %s,%s", stdout, stderr)
 		}
 	}
 }
@@ -55,14 +55,14 @@ func TestRun(t *testing.T) {
 			t.Errorf("Run failed: %s", err)
 		}
 		if stdout == "" {
-			t.Errorf("Output was empty for command: %s,%s,%s", cmd, stdout, stderr, istimeout)
+			t.Errorf("Output was empty for command: %s,%s,%s,%v", cmd, stdout, stderr, istimeout)
 		}
 	}
 }
 
 func TestSSHConfig_Scp(t *testing.T) {
 	// Call Scp method with file you want to upload to remote server.
-	err := sshConfig.Scp("/home/gaols/untitled1.html", "/tmp/target.html")
+	err := sshConfig.Scp("/home/SophisticaSean/untitled1.html", "/tmp/target.html")
 
 	// Handle errors
 	if err != nil {

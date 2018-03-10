@@ -7,26 +7,26 @@ import (
 
 func TestSSHConfig_SCopy(t *testing.T) {
 	config := &SSHConfig{
-		User:     "gaols",
+		User:     "SophisticaSean",
 		Server:   "192.168.2.155",
 		Port:     "22",
 		Password: "******",
 	}
 
-	config.Scp("/home/gaols/Codes/go/src/github.com/gaols/easyssh/", "/tmp")
+	config.Scp("/home/SophisticaSean/Codes/go/src/github.com/SophisticaSean/easyssh/", "/tmp")
 }
 
 func TestSSHConfig_SCopyM(t *testing.T) {
 	config := &SSHConfig{
-		User:     "gaols",
+		User:     "SophisticaSean",
 		Server:   "192.168.2.155",
 		Port:     "22",
 		Password: "******",
 	}
 
 	pathMappings := map[string]string{
-		"/home/gaols/Codes/go/src/github.com/gaols/easyssh/": "/tmp",
-		"/home/gaols/Codes/go/src/github.com/gaols/easydeploy/": "/tmp",
+		"/home/SophisticaSean/Codes/go/src/github.com/SophisticaSean/easyssh/": "/tmp",
+		"/home/SophisticaSean/Codes/go/src/github.com/SophisticaSean/easydeploy/": "/tmp",
 	}
 	err := config.ScpM(pathMappings)
 	if err != nil {
@@ -36,11 +36,11 @@ func TestSSHConfig_SCopyM(t *testing.T) {
 
 func TestSSHConfig_SafeScp(t *testing.T) {
 	config := &SSHConfig{
-		User:     "gaols",
+		User:     "SophisticaSean",
 		Server:   "192.168.2.155",
 		Port:     "22",
 		Password: "******",
 	}
 
-	config.Scp("/home/gaols/Codes/go/src/github.com/gaols/easyssh/easyssh.go", "/home/gaols/Downloads/easyssh.go")
+	config.Scp("/home/SophisticaSean/Codes/go/src/github.com/SophisticaSean/easyssh/easyssh.go", "/home/SophisticaSean/Downloads/easyssh.go")
 }

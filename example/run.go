@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gaols/easyssh"
+	"github.com/SophisticaSean/easyssh"
 )
 
 func main() {

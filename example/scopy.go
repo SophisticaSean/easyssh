@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/gaols/easyssh"
+	"github.com/SophisticaSean/easyssh"
 )
 
 func main() {
 	// Create SSHConfig instance with remote username, server address and path to private key.
 	ssh := &easyssh.SSHConfig{
-		User:     "gaols",
+		User:     "SophisticaSean",
 		Server:   "192.168.2.100",
 		Password: "******",
 		Port:     "22",
