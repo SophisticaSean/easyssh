@@ -14,6 +14,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/agent"
 )
@@ -72,7 +73,7 @@ func (ssh_conf *SSHConfig) connect() (*ssh.Session, error) {
 
 	sshAgent, err := net.Dial("unix", os.Getenv("SSH_AUTH_SOCK"))
 	if err != nil {
-		panic(err)
+		spew.Dump(err)
 	}
 	auths = append(auths, ssh.PublicKeysCallback(agent.NewClient(sshAgent).Signers))
 	defer sshAgent.Close()
