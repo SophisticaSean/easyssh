@@ -11,7 +11,6 @@ import (
 
 	"net"
 	"os"
-	"os/user"
 	"path/filepath"
 	"time"
 
@@ -29,8 +28,6 @@ const (
 // Server field should be a remote machine address (ex. example.com in ssh john@example.com)
 // Key is a path to private key on your local machine.
 // Port is SSH server port on remote machine.
-// Note: easyssh looking for private key in user's home directory (ex. /home/john + Key).
-// Then ensure your Key begins from '/' (ex. /.ssh/id_rsa)
 type SSHConfig struct {
 	User     string
 	Server   string
@@ -43,12 +40,7 @@ type SSHConfig struct {
 // returns ssh.Signer from user you running app home path + cutted key path.
 // (ex. pubkey,err := getKeyFile("/.ssh/id_rsa") )
 func getKeyFile(keypath string) (ssh.Signer, error) {
-	usr, err := user.Current()
-	if err != nil {
-		return nil, err
-	}
-
-	file := filepath.Join(usr.HomeDir, keypath)
+	file := filepath.Join(keypath)
 	buf, err := ioutil.ReadFile(file)
 	if err != nil {
 		return nil, err
@@ -72,14 +64,19 @@ func (ssh_conf *SSHConfig) connect() (*ssh.Session, error) {
 		auths = append(auths, ssh.Password(ssh_conf.Password))
 	}
 
-	if pubKey, err := getKeyFile(ssh_conf.Key); err == nil {
-		auths = append(auths, ssh.PublicKeys(pubKey))
+	pubKey, err := getKeyFile(ssh_conf.Key)
+	if err != nil {
+		panic(err)
 	}
+	auths = append(auths, ssh.PublicKeys(pubKey))
 
-	if sshAgent, err := net.Dial("unix", os.Getenv("SSH_AUTH_SOCK")); err == nil {
-		auths = append(auths, ssh.PublicKeysCallback(agent.NewClient(sshAgent).Signers))
-		defer sshAgent.Close()
+	sshAgent, err := net.Dial("unix", os.Getenv("SSH_AUTH_SOCK"))
+	if err != nil {
+		panic(err)
 	}
+	auths = append(auths, ssh.PublicKeysCallback(agent.NewClient(sshAgent).Signers))
+	defer sshAgent.Close()
+
 	// Default port 22
 	if ssh_conf.Port == "" {
 		ssh_conf.Port = "22"
