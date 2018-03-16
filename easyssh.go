@@ -90,13 +90,13 @@ func (sshc *SSHConfig) connect() (*ssh.Session, error) {
 
 	pubKey, err := getKeyFile(sshc.Key)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	auths = append(auths, ssh.PublicKeys(pubKey))
 
 	sshAgent, err := net.Dial("unix", os.Getenv("SSH_AUTH_SOCK"))
 	if err != nil {
-		return fmt.Errorf("could not connect to $SSH_AUTH_SOCK, is openssh installed? try `eval $(ssh-agent)`\n%v", err)
+		return nil, fmt.Errorf("could not connect to $SSH_AUTH_SOCK, is openssh installed? try `eval $(ssh-agent)`\n%v", err)
 	}
 	auths = append(auths, ssh.PublicKeysCallback(agent.NewClient(sshAgent).Signers))
 	defer sshAgent.Close()

@@ -43,7 +43,7 @@ func (ssh_conf *SSHConfig) SCopyDir(localDirPath, remoteDirPath string, timeout 
 	}
 
 	isTimeout, err := ssh_conf.RtRun(fmt.Sprintf("cd %s;tar xf %s", remoteDirPath, tgzName), func(line string, lineType int) {
-		if verbose && TypESTDERR == lineType {
+		if verbose && TypeSTDERR == lineType {
 			fmt.Println(line)
 		}
 	}, timeout)
