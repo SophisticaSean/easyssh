@@ -1,11 +1,11 @@
 package easyssh
 
 import (
+	"bufio"
+	"errors"
 	"fmt"
 	"os/exec"
 	"path/filepath"
-	"errors"
-	"bufio"
 )
 
 // https://studygolang.com/articles/4004   <- run shell command and read output line by line
@@ -41,10 +41,10 @@ func RtLocal(localCmd string, lineHandler func(line string, lineType int8), para
 		stdoutScanner := bufio.NewScanner(stdout)
 		stderrScanner := bufio.NewScanner(stderr)
 		for stdoutScanner.Scan() {
-			lineHandler(stdoutScanner.Text(), TYPE_STDOUT)
+			lineHandler(stdoutScanner.Text(), TypeSTDOUT)
 		}
 		for stderrScanner.Scan() {
-			lineHandler(stderrScanner.Text(), TYPE_STDERR)
+			lineHandler(stderrScanner.Text(), TypeSTDERR)
 		}
 		ch <- 1
 	}()

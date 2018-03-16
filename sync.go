@@ -1,13 +1,14 @@
 package easyssh
 
 import (
-	"path/filepath"
-	"fmt"
-	"time"
 	"errors"
-	"golang.org/x/crypto/ssh"
-	"os"
+	"fmt"
 	"io"
+	"os"
+	"path/filepath"
+	"time"
+
+	"golang.org/x/crypto/ssh"
 )
 
 // SCopy copy localDirPath to the remote dir specified by remoteDirPath,
@@ -42,7 +43,7 @@ func (ssh_conf *SSHConfig) SCopyDir(localDirPath, remoteDirPath string, timeout 
 	}
 
 	isTimeout, err := ssh_conf.RtRun(fmt.Sprintf("cd %s;tar xf %s", remoteDirPath, tgzName), func(line string, lineType int) {
-		if verbose && TYPE_STDERR == lineType {
+		if verbose && TypESTDERR == lineType {
 			fmt.Println(line)
 		}
 	}, timeout)
